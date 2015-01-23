@@ -3,228 +3,30 @@
 
 <head>
     <title>
+     this is index file
     </title>
     <style type="text/css">
-    .container {
-        width: 166px;
-        height: auto;
-    }
-    .box {
-        width: 30px;
-        height: 30px;
-        border: 1px solid black;
-        float: left;
-        font-family: Arial;
-        font-size: 20px;
-        color: white;
-        cursor: pointer;
-        text-align: center;
-    }
+    
     </style>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function() {
-        var uniqueRandoms = [];
-        var numRandoms = 25;
-        r = 5, c = 5;
-        addBoxes();
-        getRandomNum();
-        addBomb();
-        addNumberAdj();
-        $('.box').on('click', function() {
-            if ($(this).hasClass('bomb')) {
-                alert("bomb");
-                $(this).css('color', 'black');
-                $('.bomb').css('color', 'black');
-            }
-            else{
-              $(this).css('color', 'black');
-            }
-        })
-
-
-        function addNumberAdj() {
-            console.log("calld add no");
-                for (i = 1; i <=5; i++) {
-                for (j = 1; j <=5; j++) {
-                    if ($('.no'+i+j+'').hasClass('bomb')) {
-                        console.log("bomb found",i, j);
-                    }
-                    else{
-                        findAdjcentBlock(i,j);
-                    }
-                    }
-            }
-
-        }
-        function findAdjcentBlock(i,j){
-
-            var RNo= this.i;
-            var CNo= this.j;
-            console.log("dont have bomb" ,RNo,CNo);
-            //$('.no'+i+j+'')
-             CheckNextBox(RNo,CNo);
-             CheckBottomBox(RNo,CNo);
-             CheckPrevBox(RNo,CNo);
-             CheckUpperBox(RNo,CNo);
-             CheckCrossNextBox(RNo,CNo);
-             CheckCrossPrevBox(RNo,CNo);
-             CheckCrossBottomNextBox(RNo,CNo);
-             CheckCrossBottomPrevBox(RNo,CNo);
-
-        }
-
-        function CheckCrossNextBox(RNo,CNo){
-           if(CNo < 5 &&  RNo >=1){
-           console.log(RNo,CNo);
-           CNo+=1;
-           RNo-=1;
-           if(($('.no'+RNo+CNo+'').hasClass('bomb'))){
-             CNo-=1;
-             RNo+=1;
-             var k=parseInt($('.no'+RNo+CNo+'').text())
-             k+=1;
-             $('.no'+RNo+CNo+'').text(k);
-           }
-       }
-        }
-
-        function CheckCrossPrevBox(RNo,CNo){
-           if(CNo >= 1 &&  RNo <5){
-           console.log(RNo,CNo);
-           CNo-=1;
-           RNo-=1;
-           if(($('.no'+RNo+CNo+'').hasClass('bomb'))){
-             CNo+=1;
-             RNo+=1;
-             var k=parseInt($('.no'+RNo+CNo+'').text())
-             k+=1;
-             $('.no'+RNo+CNo+'').text(k);
-           }
-       }
-        }
-
-        function CheckCrossBottomNextBox(RNo,CNo){
-          if(CNo < 5 &&  RNo >=1){
-          console.log(RNo,CNo);
-           CNo+=1;
-           RNo+=1;
-           if(($('.no'+RNo+CNo+'').hasClass('bomb'))){
-             RNo-=1;
-             CNo-=1;
-             var k=parseInt($('.no'+RNo+CNo+'').text())
-             k+=1;
-             $('.no'+RNo+CNo+'').text(k);
-           }
-       }
-        }
-     function CheckCrossBottomPrevBox(RNo,CNo){
-          if(CNo >= 1 &&  RNo < 5){
-          console.log(RNo,CNo);
-           CNo-=1;
-           RNo+=1;
-           if(($('.no'+RNo+CNo+'').hasClass('bomb'))){
-             RNo-=1;
-             CNo+=1;
-             var k=parseInt($('.no'+RNo+CNo+'').text())
-             k+=1;
-             $('.no'+RNo+CNo+'').text(k);
-           }
-       }
-        }
-
-        function CheckNextBox(RNo,CNo){
-           if(CNo < 5){
-           console.log(RNo,CNo);
-           CNo+=1;
-           if(($('.no'+RNo+CNo+'').hasClass('bomb'))){
-             CNo-=1;
-             var k=parseInt($('.no'+RNo+CNo+'').text())
-             k+=1;
-             $('.no'+RNo+CNo+'').text(k);
-           }
-       }
-        }
-
-        function CheckPrevBox(RNo,CNo){
-           if(CNo > 1){
-           console.log(RNo,CNo);
-           CNo-=1;
-           if(($('.no'+RNo+CNo+'').hasClass('bomb'))){
-             CNo+=1;
-             var k=parseInt($('.no'+RNo+CNo+'').text())
-             k+=1;
-             $('.no'+RNo+CNo+'').text(k);
-           }
-       }
-        }
-
-        function CheckBottomBox(RNo,CNo){
-          if(RNo <5){
-          console.log(RNo,CNo);
-           RNo+=1;
-           if(($('.no'+RNo+CNo+'').hasClass('bomb'))){
-             RNo-=1;
-             var k=parseInt($('.no'+RNo+CNo+'').text())
-             k+=1;
-             $('.no'+RNo+CNo+'').text(k);
-           }
-       }
-        }
-         function CheckUpperBox(RNo,CNo){
-          if(RNo >1){
-          console.log(RNo,CNo);
-           RNo-=1;
-           if(($('.no'+RNo+CNo+'').hasClass('bomb'))){
-             RNo+=1;
-             var k=parseInt($('.no'+RNo+CNo+'').text())
-             k+=1;
-             $('.no'+RNo+CNo+'').text(k);
-           }
-           }
-        }
-
-        function getRandomNum() {
-
-            if (!uniqueRandoms.length) {
-                for (var i = 0; i < numRandoms; i++) {
-                    uniqueRandoms.push(i);
-                }
-            }
-            var index = Math.floor(Math.random() * uniqueRandoms.length);
-            var val = uniqueRandoms[index];
-            uniqueRandoms.splice(index, 1);
-            val = val + 1;
-            return val;
-        }
-
-        function addBomb() {
-            var bomb = 10;
-            var Bpos = [];
-            for (var i = 0; i < bomb; i++) {
-                var no1 = getRandomNum();
-                $('.tile' + no1).addClass('bomb').text('B');
-            }
-        }
-
-        function addBoxes() {
-            var count = 1;
-            for (i = 1; i <= r; i++) {
-                for (j = 1; j <= c; j++) {
-                    $('.container').append("<div class='box tile" + count + "  no"+i+''+j+"' data-id='" + i + j + "'>0</div>")
-                    count += 1;
-                }
-                $('.container').append("<div style='clear:both;visibility:hidden'></div>");
-            }
-        }
-
-    });
-    </script>
-</head>
+    </head>
 
 <body>
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-W4F6NS"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W4F6NS');</script>
+<!-- End Google Tag Manager -->
     <div class="container">
-
+        <a href="http://www.google.com" name="click" target="_blank">click</a>
+        <br/>
+        <button id="bttn">hello vijay</button>
+    </div>
+    <div class="content">
+        <a href="http://www.google.com" name="clickMe" target="_blank">Click me</a>
     </div>
 </body>
 
