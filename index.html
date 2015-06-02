@@ -47,13 +47,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
     <br/>
     <div class="content">
-        <a href="#" class="three" name="clickMe" >Link_three</a>
+        <a class="three" name="clickMe" >Link_three</a>
     </div>
     
     <script>
         
-    $('.three').on('click',function(){
-        
+    $('.three').on('click',function(e){
+        e.preventDefault();
         console.log("clicked");
     })    
     </script>
