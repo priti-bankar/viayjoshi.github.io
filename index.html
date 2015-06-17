@@ -51,11 +51,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
     
     <script>
-        
+     dataLayer.push({'event': 'linkClicked','action':'click','link3':'linkthree'});    
     $('.three').on('click',function(e){
         e.preventDefault();
         console.log("clicked");
-        dataLayer.push({'event': 'linkClicked','action':'click','link3':'linkthree'});
+       
     })    
     </script>
     <script>
